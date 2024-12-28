@@ -4,7 +4,7 @@ import turtle as tao, random
 
 class Shape:
     def __init__(self):
-        pass
+        self.colors = ['red', 'green', 'blue', 'pink', 'violet', 'black']
 
     def random_pos(self, rand_range=(-200, 200)):
         x_pos = random.randint(*rand_range)
@@ -13,8 +13,8 @@ class Shape:
         return pos
 
     def draw_circles(self, random_radius=False ,radius=100, random_pos=False, count=10, speed=5):
+        print(f"Draw {count} circles" if count > 1 else "Draw a circle.")
         angle = 360 / count
-        colors = ['red', 'green', 'blue']
         tao.speed(speed)
         tao.pensize(3)
         for i in range(count):
@@ -25,13 +25,37 @@ class Shape:
                 tao.penup()
                 tao.goto(*position)
                 tao.pendown()
-            color = random.choice(colors)
+            color = random.choice(self.colors)
             tao.color(color)
             tao.circle(radius=radius)
             tao.left(angle) # หันหน้าเอียงทีละกี่องศา
             print(f"หมุนครั้งที่: {i + 1}")
         print("END")
-        tao.Screen().exitonclick()
+        # tao.Screen().exitonclick()
+
+    def draw_squares(self, random_pos=False, random_length=False, length=100, count=10, speed=5):
+        print(f"Draw {count} squares" if count > 1 else "Draw a square.")
+        tao.speed(speed)
+        tao.pensize(3)
+        for i in range(count):
+            if random_pos:
+                position = self.random_pos()
+                tao.penup()
+                tao.goto(*position)
+                tao.pendown()
+            if random_length:
+                length = random.randint(25, 150)
+            color = random.choice(self.colors)
+            tao.color(color)
+            for j in range(4):
+                tao.forward(length)
+                tao.left(90)
+            print(f"วาดครั้งที่ {i + 1}")
+        print("END")
+        # tao.Screen().exitonclick()
+
 
 c1 = Shape()
-c1.draw_circles(random_radius=False, random_pos=True)
+c1.draw_circles(random_radius=True, random_pos=True, count=10)
+c1.draw_squares(random_pos=True, random_length=True, count=15)
+tao.Screen().exitonclick()
