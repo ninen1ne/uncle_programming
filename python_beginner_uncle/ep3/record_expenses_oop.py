@@ -3,27 +3,46 @@
 
 import tkinter as tk
 from tkinter import ttk
+import ttkbootstrap
 import customtkinter as ctk
 from datetime import datetime
 import csv
 
+import ttkbootstrap.window
+
+
+ttkbootstrap.themes
 class Record(ctk.CTk):
     def __init__(self):
         # window setup
-        ctk.set_appearance_mode('light')
-        super().__init__(fg_color='white')
+        # ctk.set_appearance_mode('light')
+        super().__init__(fg_color='#129aaf')
 
         self.title('Record expenses by Norawee')
         self.geometry("500x500+900+200")
+        self.tab_control = ttk.Notebook(self, height=25)
+        expense_icon = tk.PhotoImage()
         FONT1 = (None, 20)
+        self.days = days = {
+            'Mon': 'จันทร์',
+            'Tue': 'อังคาร',
+            'Wed': 'พุธ',
+            'Thu': 'พฤหัสบดี',
+            'Fri': 'ศุกร์',
+            'Sat': 'เสาร์',
+            'Sun': 'อาทิตย์',
+        }
 
         ctk.CTkLabel(self, text="Record expenses").pack()
 
-
-
         # widgets zone
-        frame = ctk.CTkFrame(master=self, width=250, height=400)
-        frame.place(x=125, y=50)
+        tab1 = ctk.CTkFrame(self.tab_control)
+        tab2 = ctk.CTkFrame(self.tab_control)
+        self.tab_control.pack(fill='both')
+        self.tab_control.add(tab1, text='expense')
+        self.tab_control.add(tab2, text='withdraw')
+        frame = ctk.CTkFrame(master=self, width=500, height=500, fg_color='#ccc000')
+        frame.pack(fill='both', expand=True)
         label1 = ctk.CTkLabel(frame, text='รายการค่าใช้จ่าย', font=FONT1)
         label1.pack()
         self.v_expense = ctk.StringVar()
@@ -48,6 +67,7 @@ class Record(ctk.CTk):
         # make entry avaible
         self.entry_fields = [self.entry1, self.entry2, self.entry3]
         self.bind('<Return>', self.save) # must add in def save() function too
+        self.bind('<Tab>', lambda x: self.entry2.focus())
 
         # loop
         self.mainloop()
@@ -58,7 +78,8 @@ class Record(ctk.CTk):
         price = self.v_price.get()
         amount = self.v_amount.get()
         total = float(price) * float(amount)
-        date = datetime.now()
+        today = datetime.now().strftime('%a')
+        date = datetime.now().strftime(f'%Y-%m-%d-{self.days[today]} %H:%M:%S')
         print(f'รายการ: {expense} ราคา: {price} จำนวน: {amount} total: {total:.2f} date: {date}')
         # clear previous data in entry field
         self.v_expense.set('')
