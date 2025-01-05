@@ -90,7 +90,7 @@ class Record(ctk.CTk):
         self.entry1.focus()
 
     def write_to_csv(self, expense, price, amount, total, date):
-        with open('ep3/savedata.csv', 'a',encoding='utf-8', newline='') as f:
+        with open('/Users/durandal/Documents/GitHub/uncle_programming/python_beginner_uncle/ep3/savedata.csv', 'a',encoding='utf-8', newline='') as f:
             # with คือสั่งเปิด file เเล้วปิด autonomous
             # 'a' การบันทึกข้อมูลเรื่อยๆ เพิ่มต่อจากข้อมูลเก่า(append)
             # newline ทำให้ข้อมูลไม่มีบรรทัดว่าง
