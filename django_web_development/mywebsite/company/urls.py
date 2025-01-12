@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import home # .view the dot indicate relative path(same folder with this file)
+from .views import * # .view the dot indicate relative path(same folder with this file)
 
 urlpatterns = [
-    path('', home),
+    path('', home, name='home-page'), # localhost:8000/
+    path('about/', about_us, name='about-page'), # localhost:8000/about/
+
 ]

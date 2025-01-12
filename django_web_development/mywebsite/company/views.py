@@ -8,3 +8,6 @@ from django.http import HttpResponse
 def home(request):
     return render(request, 'company/home.html')
     #'DIRS': [BASE_DIR / 'company/template'], + 'company/home.html' (base_dir is location where a project are stored)
+
+def about_us(request):
+    return render(request, 'company/about_us.html')

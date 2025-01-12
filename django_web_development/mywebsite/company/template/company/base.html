@@ -11,7 +11,7 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Hugo 0.122.0" />
-    <title>Pricing example · Bootstrap v5.3</title>
+    <title>{% block title %} Norawee Company {% endblock title %}</title>
 
     <link
       rel="canonical"
@@ -285,8 +285,8 @@
           <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <a
               class="me-3 py-2 link-body-emphasis text-decoration-none"
-              href="#"
-              >Features</a
+              href="{% url 'about-page' %}"
+              >About Us</a
             >
             <a
               class="me-3 py-2 link-body-emphasis text-decoration-none"
@@ -304,12 +304,6 @@
           </nav>
         </div>
 
-        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-          <h1 class="display-4 fw-normal text-body-emphasis">Eureka!</h1>
-          <p class="fs-5 text-body-secondary">
-            Quickly find plenty of art styles.
-          </p>
-        </div>
       </header>
 
       <main>{% block content %} {% endblock content %}</main>
