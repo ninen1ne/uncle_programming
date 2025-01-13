@@ -5,9 +5,24 @@
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
   <h1 class="display-4 fw-normal text-body-emphasis">Eureka!</h1>
   <p class="fs-5 text-body-secondary">
-    Quickly find plenty of art styles.
+    Quickly find plenty of books.
   </p>
 </div>
+
+<center>
+
+  {% for pd in all_product %} <!--name all_product must match with dictionary from views.py-->
+  <h1>{{pd.title}}</h1>
+  <p>
+    รายละเอียด: {{pd.description}}<br>
+    ราคา: {{pd.price}} บาท<br>
+    เหลือในสต๊อก: {{pd.quantity}} เล่ม<br>
+  </p>
+  <hr>
+  {% endfor%}
+
+</center>
+
 <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
   <div class="col">
     <div class="card mb-4 rounded-3 shadow-sm">
