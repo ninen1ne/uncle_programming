@@ -14,3 +14,13 @@ def home(request):
 
 def about_us(request):
     return render(request, 'company/about_us.html')
+
+def contact_us(request):
+    if request.method == 'POST':
+        data = request.POST.copy()
+        title = data.get('title')
+        email = data.get('email')
+        detail = data.get('detail')
+        print(f'{title}\n{email}\n{detail}')
+        print('-------------')
+    return render(request, 'company/contact.html')

@@ -1,0 +1,33 @@
+{% extends 'company/base.html' %} 
+{% load static %}
+
+{% block title %} Contact Us {% endblock title%}
+
+{%block content %}
+
+<center>
+    <h1>ติดต่อเรา</h1>
+</center>
+    <form method="post">
+        {% csrf_token %} <!-- secyrity for django -->
+        <div class="form-group">
+          <label for="title">Contact topic:</label>
+          <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" name="email">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="detail">Detail:</label>
+            <textarea class="form-control" rows="5" id="detail" name="detail"></textarea>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+      </form>
+
+
+{% endblock content %}
