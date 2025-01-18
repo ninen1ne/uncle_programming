@@ -25,3 +25,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+    
+class ContactList(models.Model):
+    title = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    detail = models.TextField(null=True, blank=True)
+    complete = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+    # this func allow admin site see title of this model.
+    # if not use this func you will get return obj not title
