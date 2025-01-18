@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
+from django.contrib.auth import authenticate, login
+
 # Create your views here.
 
 # def home(request):
@@ -41,3 +43,18 @@ def contact_us(request):
         context['message'] = 'We have received your contact information.'
 
     return render(request, 'company/contact.html', context)
+
+def login(request):
+     context = {}
+
+     if request.method == 'POST':
+        data = request.POST.copy() # data return a dict
+        username = data.get('username')
+        password = data.get('password')
+        try:
+             user = authenticate(username=username, password=password)
+             login(request, user)
+        except:
+             context['message'] = 'username หรือ password ไม่ถูกต้อง'
+
+     return render(request, 'company/login.html', context)
