@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LogoutView
+
 
 # Create your views here.
 
@@ -44,6 +46,7 @@ def contact_us(request):
 
     return render(request, 'company/contact.html', context)
 
+
 def login(request):
      context = {}
 
@@ -58,3 +61,7 @@ def login(request):
              context['message'] = 'username หรือ password ไม่ถูกต้อง'
 
      return render(request, 'company/login.html', context)
+
+class CustomLogoutView(LogoutView):
+    template_name = 'company/logout.html'  # Specify your template here
+

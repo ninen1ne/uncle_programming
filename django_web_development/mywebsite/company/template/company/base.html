@@ -290,7 +290,6 @@
               >About Us</a
             >
             <a
-            <a
               class="me-3 py-2 link-body-emphasis text-decoration-none"
               href="{% url 'contact-page' %}"
               >Contact Us</a
@@ -310,8 +309,14 @@
             >
             {% if user.is_authenticated %}
             &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none" href="#"
-              >Hello admin</a
+              >สวัสดี Admin</a
             >
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              &nbsp;&nbsp;
+              <button type="submit" class="py-2 text-dark text-decoration-none btn btn-danger">Logout</button>
+          </form>
+            <!-- &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none btn btn-danger" href="{% url 'logout' %}">Logout</a> -->
             {% else %}
             &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none btn btn-primary" href="{% url 'login' %}"
               >Login</a

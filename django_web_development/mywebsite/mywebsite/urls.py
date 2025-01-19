@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include # include func use for link app and project
-from django.contrib.auth import views
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('company.urls')), # linked from project to app
-    path('login/', views.LoginView.as_view(template_name='company/login.html'), name='login'),
-    path('logout/', views.LogoutView.as_view(template_name='company/logout.html'), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name='company/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='company/logout.html'), name='logout'),
 ]
