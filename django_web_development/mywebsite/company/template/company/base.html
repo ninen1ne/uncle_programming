@@ -304,12 +304,9 @@
               href="#"
               >Support</a
             >
-            <a class="py-2 link-body-emphasis text-decoration-none" href="#"
-              >Pricing</a
-            >
             {% if user.is_authenticated %}
             &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none" href="#"
-              >สวัสดี Admin</a
+              >| สวัสดีคุณ{{user.first_name}} {{user.last_name}} ({{user.profile.user_type}})</a
             >
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}

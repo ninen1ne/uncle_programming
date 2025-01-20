@@ -62,6 +62,6 @@ def login(request):
 
      return render(request, 'company/login.html', context)
 
-class CustomLogoutView(LogoutView):
-    template_name = 'company/logout.html'  # Specify your template here
+# class CustomLogoutView(LogoutView):
+#     template_name = 'company/logout.html'  # Specify your template here
 
