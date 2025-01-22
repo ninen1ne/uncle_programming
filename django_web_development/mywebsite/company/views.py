@@ -67,5 +67,6 @@ def login(request):
 
 def accountant(request):
      all_contact = ContactList.objects.all()
+    #  all_contact = ContactList.objects.all().order_by('-id'); .order_by('-id') reverse the order of all_contact list เอา contact ล่าสุดอยู่ข้างบน
      context = {'all_contact': all_contact}
      return render(request, 'company/accountant.html', context)

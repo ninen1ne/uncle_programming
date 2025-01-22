@@ -27,7 +27,11 @@
         <td>{{contact.title}}</td>
         <td>{{contact.email}}</td>
         <td>{{contact.detail}}</td>
-        <td>{{contact.complete}}</td>
+        {% if contact.complete == True %}
+        <td><i class="fa fa-check" style="font-size: 20px; color: green;"></i></td>
+        {% else %}
+        <td><i class="fa fa-times" style="font-size: 20px; color: red;"></i></td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>
