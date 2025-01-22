@@ -287,6 +287,9 @@
           </a>
 
           <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            {% if user.profile.user_type == 'accountant' %}
+            <a class="py-2 text-dark text-decoration-none" href="{% url 'account-page'%}">รายการติดต่อ</a>
+            {% else %}
             <a
               class="me-3 py-2 link-body-emphasis text-decoration-none"
               href="{% url 'about-page' %}"
@@ -307,6 +310,7 @@
               href="#"
               >Support</a
             >
+            {% endif %}
             {% if user.is_authenticated %}
             &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none" href="#"
               >| สวัสดีคุณ{{user.first_name}} {{user.last_name}} ({{user.profile.user_type}})</a
