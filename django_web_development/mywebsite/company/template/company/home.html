@@ -4,10 +4,21 @@
 {%block content %}
 
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+
+  {% if user.profile.user_type == 'vip' %} <!-- user. that this page refer to is from from django.contrib.auth.models import User in models.py-->
+  <h1 class="display-4 fw-normal text-body-emphasis">Special promotion for VIP member only!</h1>
+  <p class="fs-5 text-body-secondary">Quickly find plenty of books. Buy today and get 50% discount</p>
+  {% elif user.profile.user_type == 'vvip' %}
+  <h1 class="display-4 fw-normal text-body-emphasis">Special promotion for VVIP member only!!!</h1>
+  <p class="fs-5 text-body-secondary">Quickly find plenty of books. Buy today and get 60% discount</p>
+  {% elif user.profile.user_type == 'member' %}
+  <h1 class="display-4 fw-normal text-body-emphasis">Special promotion for member only!!!</h1>
+  <p class="fs-5 text-body-secondary">Quickly find plenty of books. Buy today and get 30% discount</p>
+  {% else %}
   <h1 class="display-4 fw-normal text-body-emphasis">Eureka!</h1>
-  <p class="fs-5 text-body-secondary">
-    Quickly find plenty of books.
-  </p>
+  <p class="fs-5 text-body-secondary">Quickly find plenty of books. Buy today and get 20% discount</p>
+  {% endif %}
+
 </div>
 
 <img src="{% static 'company/images/python_book.JPG' %}" alt="My image", style="margin-left: 375px;">

@@ -65,3 +65,7 @@ def login(request):
 # class CustomLogoutView(LogoutView):
 #     template_name = 'company/logout.html'  # Specify your template here
 
+def accountant(request):
+     all_contact = ContactList.objects.all()
+     context = {'all_contact': all_contact}
+     return render(request, 'company/accountant.html', context)

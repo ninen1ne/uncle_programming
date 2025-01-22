@@ -1,0 +1,36 @@
+{% extends 'company/base.html' %} 
+{% load static %}
+
+{% block title %} Account {% endblock title%}
+
+{%block content %}
+
+<center>
+    <h1>ฝ่ายบัญชี</h1>
+    <p>หน้านี้แสดงรายชื่อผู้ติดต่อทั้งหมดให้ฝ่ายบัญชีช่วยติดต่อกลับ</p>
+</center>
+
+<table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">sequence</th>
+        <th scope="col">topic</th>
+        <th scope="col">email</th>
+        <th scope="col">detail</th>
+        <th scope="col">complete status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for contact in all_contact %} <!-- all_contact is the name of dict -->
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{contact.title}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.detail}}</td>
+        <td>{{contact.complete}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}
