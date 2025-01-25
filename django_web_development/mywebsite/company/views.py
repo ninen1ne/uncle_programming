@@ -82,7 +82,7 @@ def register(request):
         username = data.get('username')
         password = data.get('password')
         confirm_password = data.get('confirm_password')
-        # check user
+        # check user ว่ามีในระบบรึยัง
         try:
              check = User.objects.get(username=username)
         except:
@@ -94,13 +94,13 @@ def register(request):
              new_user.save()
 
              new_profile = Profile()
-             new_profile.user = User.objects.get()
+             new_profile.user = User.objects.get(username=username)
              new_profile.tel = tel
              new_profile.save()
-        try:
-             user = authenticate(username=username, password=password)
-             login(request, user)
-        except:
-             context['message'] = 'username หรือ password ไม่ถูกต้อง'
+        # try:
+        #      user = authenticate(username=username, password=password)
+        #      login(request, user)
+        # except:
+        #      context['message'] = 'username หรือ password ไม่ถูกต้อง'
 
      return render(request, 'company/register.html', context)
