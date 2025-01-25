@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.models import User
+# from django.contrib.auth.views import LogoutView
 
 
 # Create your views here.
@@ -70,3 +71,36 @@ def accountant(request):
     #  all_contact = ContactList.objects.all().order_by('-id'); .order_by('-id') reverse the order of all_contact list เอา contact ล่าสุดอยู่ข้างบน
      context = {'all_contact': all_contact}
      return render(request, 'company/accountant.html', context)
+
+def register(request):
+     context = {}
+
+     if request.method == 'POST':
+        data = request.POST.copy() # data return a dict
+        fullname = data.get('fullname')
+        tel = data.get('telephone')
+        username = data.get('username')
+        password = data.get('password')
+        confirm_password = data.get('confirm_password')
+        # check user
+        try:
+             check = User.objects.get(username=username)
+        except:
+             new_user = User()
+             new_user.username = username
+             new_user.email = username
+             new_user.first_name = fullname
+             new_user.set_password(password)
+             new_user.save()
+
+             new_profile = Profile()
+             new_profile.user = User.objects.get()
+             new_profile.tel = tel
+             new_profile.save()
+        try:
+             user = authenticate(username=username, password=password)
+             login(request, user)
+        except:
+             context['message'] = 'username หรือ password ไม่ถูกต้อง'
+
+     return render(request, 'company/register.html', context)

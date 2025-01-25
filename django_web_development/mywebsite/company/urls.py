@@ -5,5 +5,6 @@ urlpatterns = [
     path('', home, name='home-page'), # localhost:8000/
     path('about/', about_us, name='about-page'), # localhost:8000/about/
     path('contact/', contact_us, name='contact-page'),
-    path('accountant/', accountant, name='account-page'),
+    path('accountant/', accountant, name='accountant-page'),
+    path('register/', register, name='register-page'),
 ]

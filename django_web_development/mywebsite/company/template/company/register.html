@@ -1,0 +1,52 @@
+{% extends 'company/base.html' %} 
+
+{% block title %} เข้าสู่ระบบ {% endblock title%}
+
+{%block content %}
+
+    <center>
+        <h1>สมัครสมาชิก</h1>
+    </center>
+
+    {% if message %}
+        <h3>{{ message }}</h3> <!-- show message from contactlist class from view.py -->
+    {% else %}
+        <form method="post">
+            {% csrf_token %} <!-- secyrity for django -->
+            <div class="form-group">
+            <label for="fullname">Fullname</label>
+            <input type="text" class="form-control" id="fullname" name="fullname" required>
+            </div>
+            <br>
+
+            <div class="form-group">
+            <label for="telephone">Tel</label>
+            <input type="text" class="form-control" id="telephone" name="telephone" >
+            </div>
+            <br>
+
+            <div class="form-group">
+            <label for="username">Email</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="confirm_password">Confirm your password</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            </div>
+            <br>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+            <br>
+        </form>
+    {% endif %}
+
+
+{% endblock content %}

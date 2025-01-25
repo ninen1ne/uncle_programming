@@ -41,6 +41,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.CharField(max_length=100, default='member') # user role
     point = models.IntegerField(default=0)
+    tel = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

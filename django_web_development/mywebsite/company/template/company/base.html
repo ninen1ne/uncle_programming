@@ -31,6 +31,8 @@
     crossorigin="anonymous"
     />
 
+    <!-- <link rel="stylesheet" href="{% static 'company/css/style.css'%}"> ไม่ต้องใส่ static ใน 'str' -->
+
     <!-- <link rel="stylesheet" href=""> -->
     
     <!-- Favicons -->
@@ -288,7 +290,7 @@
 
           <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             {% if user.profile.user_type == 'accountant' %}
-            <a class="py-2 text-dark text-decoration-none" href="{% url 'account-page'%}">รายการติดต่อ</a>
+            <a class="py-2 text-dark text-decoration-none" href="{% url 'accountant-page'%}">รายการติดต่อ</a>
             {% else %}
             <a
               class="me-3 py-2 link-body-emphasis text-decoration-none"
