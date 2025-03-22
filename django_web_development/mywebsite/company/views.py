@@ -85,18 +85,24 @@ def register(request):
         # check user ว่ามีในระบบรึยัง
         try:
              check = User.objects.get(username=username)
+            #  context['warning'] = f'email: {username} มีในระบบเเล้ว กรุณาใช้ email อื่น'
+            #  return render(request, 'company/register.html', context)
         except:
-             new_user = User()
-             new_user.username = username
-             new_user.email = username
-             new_user.first_name = fullname
-             new_user.set_password(password)
-             new_user.save()
+            if password != confirm_password:
+                context['warning'] = 'กรุณากรอกรหัสผ่านให้ถูกต้องทั้งสองช่อง'
+                return render(request, 'company/register.html', context)
 
-             new_profile = Profile()
-             new_profile.user = User.objects.get(username=username)
-             new_profile.tel = tel
-             new_profile.save()
+            new_user = User()
+            new_user.username = username
+            new_user.email = username
+            new_user.first_name = fullname
+            new_user.set_password(password)
+            new_user.save()
+
+            new_profile = Profile()
+            new_profile.user = User.objects.get(username=username)
+            new_profile.tel = tel
+            new_profile.save()
         # try:
         #      user = authenticate(username=username, password=password)
         #      login(request, user)
